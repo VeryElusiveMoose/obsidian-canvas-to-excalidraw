@@ -96,10 +96,13 @@ export function fitInside(box: Box, width: number, height: number): Box {
 	return { x: box.x + (box.width - fitted.width) / 2, y: box.y + (box.height - fitted.height) / 2, ...fitted };
 }
 
-/** The first free name for the drawing beside the canvas: "Name.excalidraw.md", then "Name 1.excalidraw.md", and on. */
+/**
+ * The first free name for the drawing beside the canvas: "Name.exc.md", then "Name 1.exc.md", and on.
+ * The Excalidraw plugin knows a drawing by its frontmatter, not its name, so the short suffix is enough.
+ */
 export function drawingName(canvasBasename: string, exists: (name: string) => boolean): string {
 	for (let n = 0; ; n += 1) {
-		const name = `${canvasBasename}${n ? ` ${n}` : ''}.excalidraw.md`;
+		const name = `${canvasBasename}${n ? ` ${n}` : ''}.exc.md`;
 		if (!exists(name)) return name;
 	}
 }

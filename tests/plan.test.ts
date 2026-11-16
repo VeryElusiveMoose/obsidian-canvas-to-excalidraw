@@ -48,9 +48,9 @@ assert.deepEqual(fitInside({ x: 10, y: 10, width: 300, height: 300 }, 100, 400),
 assert.deepEqual(fitInside({ x: 0, y: 0, width: 50, height: 50 }, 0, 0), { x: 0, y: 0, width: 50, height: 50 });
 
 // The drawing never takes an existing name.
-assert.equal(drawingName('Board', () => false), 'Board.excalidraw.md');
-const taken = new Set(['Board.excalidraw.md', 'Board 1.excalidraw.md']);
-assert.equal(drawingName('Board', (name) => taken.has(name)), 'Board 2.excalidraw.md');
+assert.equal(drawingName('Board', () => false), 'Board.exc.md');
+const taken = new Set(['Board.exc.md', 'Board 1.exc.md']);
+assert.equal(drawingName('Board', (name) => taken.has(name)), 'Board 2.exc.md');
 
 // A file that isn't a canvas says so.
 assert.throws(() => parseCanvas('not json'), /not valid JSON/u);

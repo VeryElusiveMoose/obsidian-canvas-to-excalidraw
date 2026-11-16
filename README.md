@@ -1,6 +1,7 @@
 # Canvas to Excalidraw
 
-Turns an Obsidian Canvas into an Excalidraw drawing, in your vault, beside the canvas.
+Turns an Obsidian Canvas into an Excalidraw drawing, in your vault, beside the canvas. A canvas named
+`Board.canvas` becomes `Board.exc.md`, which the Excalidraw plugin opens as a drawing.
 
 Right-click a `.canvas` file in the file explorer and choose **Convert to Excalidraw**. The command
 **Convert current canvas** does the same for the canvas you have open. The new drawing opens when it's done.
@@ -30,7 +31,7 @@ If a file in the canvas can't be found or drawn, it becomes a labeled box linkin
 and a notice says how many there were.
 
 The canvas itself is never changed. If a drawing with the canvas's name already exists, the new one gets
-a number (`Board 1.excalidraw.md`) instead of replacing it.
+a number (`Board 1.exc.md`) instead of replacing it.
 
 ## Building
 
