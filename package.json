@@ -1,6 +1,6 @@
 {
   "name": "obsidian-canvas-to-excalidraw",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Convert an Obsidian Canvas into an Excalidraw drawing, with images and notes kept as vault links.",
   "license": "Apache-2.0",
   "private": true,
