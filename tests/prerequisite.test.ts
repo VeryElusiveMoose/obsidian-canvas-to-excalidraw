@@ -19,20 +19,22 @@ function probe(files: Record<string, string>, api: boolean): Probe {
 	};
 }
 
+/** The state, or a failed check if reading it throws: a missing or unreadable file is a state, never an error. */
+const state = (p: Probe) => excalidrawState(p).catch((error: unknown) => assert.fail(`excalidrawState threw (${String(error)})`));
+
 const manifest = { '.vaultconfig/plugins/obsidian-excalidraw-plugin/manifest.json': '{}' };
 const enabled = { '.vaultconfig/community-plugins.json': '["dataview", "obsidian-excalidraw-plugin"]' };
 const others = { '.vaultconfig/community-plugins.json': '["dataview"]' };
 
 // The three states the user can be in, read from the vault's own config folder.
-assert.equal(await excalidrawState(probe({ ...manifest, ...enabled }, true)), 'ready');
-assert.equal(await excalidrawState(probe({ ...others }, false)), 'missing');
-assert.equal(await excalidrawState(probe({ ...manifest, ...others }, false)), 'off');
-assert.equal(await excalidrawState(probe({ ...manifest }, false)), 'off', 'no plugin list means nothing is turned on');
-assert.equal(await excalidrawState(probe({ ...manifest, '.vaultconfig/community-plugins.json': 'not json' }, false))
-	.catch((error: unknown) => assert.fail(`an unreadable plugin list threw (${String(error)})`)), 'off');
-assert.equal(await excalidrawState(probe({ ...manifest, ...enabled }, false)), 'loading');
+assert.equal(await state(probe({ ...manifest, ...enabled }, true)), 'ready');
+assert.equal(await state(probe({ ...others }, false)), 'missing');
+assert.equal(await state(probe({ ...manifest, ...others }, false)), 'off');
+assert.equal(await state(probe({ ...manifest }, false)), 'off', 'no plugin list means nothing is turned on');
+assert.equal(await state(probe({ ...manifest, '.vaultconfig/community-plugins.json': 'not json' }, false)), 'off');
+assert.equal(await state(probe({ ...manifest, ...enabled }, false)), 'loading');
 // The API is what counts: present means ready, whatever the files say.
-assert.equal(await excalidrawState(probe({}, true)), 'ready');
+assert.equal(await state(probe({}, true)), 'ready');
 
 // What the user is told.
 assert.equal(promptFor('ready', false), undefined);
