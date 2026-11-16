@@ -1,0 +1,10 @@
+{
+  "id": "canvas-to-excalidraw",
+  "name": "Canvas to Excalidraw",
+  "version": "0.1.0",
+  "minAppVersion": "1.7.0",
+  "description": "Convert a canvas into an Excalidraw drawing. Images, notes and PDFs stay links to your vault files.",
+  "author": "AUTHOR_NAME",
+  "authorUrl": "AUTHOR_URL",
+  "isDesktopOnly": false
+}

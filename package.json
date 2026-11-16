@@ -1,0 +1,32 @@
+{
+  "name": "obsidian-canvas-to-excalidraw",
+  "version": "0.1.0",
+  "description": "Convert an Obsidian Canvas into an Excalidraw drawing, with images and notes kept as vault links.",
+  "license": "Apache-2.0",
+  "private": true,
+  "type": "module",
+  "main": "main.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc --noEmit && node esbuild.config.mjs production",
+    "dev": "node esbuild.config.mjs",
+    "lint": "eslint src",
+    "test": "node scripts/run_tests.mjs"
+  },
+  "keywords": [
+    "obsidian",
+    "obsidian-plugin",
+    "canvas",
+    "excalidraw"
+  ],
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.10.0",
+    "eslint-plugin-obsidianmd": "^0.4.2",
+    "obsidian": "latest",
+    "typescript": "^5.7.2"
+  }
+}

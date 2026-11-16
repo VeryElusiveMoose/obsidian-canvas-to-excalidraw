@@ -1,0 +1,13 @@
+Canvas to Excalidraw
+
+Parts of this plugin are adapted from CanvasPort:
+https://github.com/faridgareev/obsidian-canvasport
+Copyright 2026 CanvasPort contributors
+
+CanvasPort is a modified derivative of Canvas Export:
+https://github.com/rmoff/obsidian-canvas-export
+Copyright 2026 Robin Moffatt
+
+Both are distributed under the Apache License, Version 2.0, as is this plugin.
+The adapted files (src/canvas.ts, src/colors.ts, src/text.ts) say at the top what
+they were adapted from and how they were changed.
