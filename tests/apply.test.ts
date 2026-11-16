@@ -124,7 +124,7 @@ assert.deepEqual(arrow.boundElements, [{ id: label.id, type: 'text' }]);
 for (const outcome of [undefined, 'fail'] as const) {
 	const failing = new StubAutomate(outcome ? { 'pictures/wide.png': outcome } : {});
 	const canvas = { nodes: [{ id: 'w', type: 'file', x: 0, y: 0, width: 100, height: 100, file: 'pictures/wide.png' }], edges: [] };
-	const r = await applyPlan(failing, planConversion(canvas), (path) => files[path]);
+	const r = await applyPlan(failing, planConversion(canvas), (path) => files[path]).catch((error: unknown) => assert.fail(`outcome ${outcome}: applyPlan threw (${String(error)})`));
 	const els = [...failing.elements.values()];
 	assert.deepEqual(els.map((el) => el.type), ['rectangle', 'text'], `outcome ${outcome}`);
 	assert.equal(els[0].link, '[[pictures/wide.png]]');
