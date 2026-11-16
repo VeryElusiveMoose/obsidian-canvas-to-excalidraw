@@ -28,7 +28,8 @@ assert.equal(await excalidrawState(probe({ ...manifest, ...enabled }, true)), 'r
 assert.equal(await excalidrawState(probe({ ...others }, false)), 'missing');
 assert.equal(await excalidrawState(probe({ ...manifest, ...others }, false)), 'off');
 assert.equal(await excalidrawState(probe({ ...manifest }, false)), 'off', 'no plugin list means nothing is turned on');
-assert.equal(await excalidrawState(probe({ ...manifest, '.vaultconfig/community-plugins.json': 'not json' }, false)), 'off');
+assert.equal(await excalidrawState(probe({ ...manifest, '.vaultconfig/community-plugins.json': 'not json' }, false))
+	.catch((error: unknown) => assert.fail(`an unreadable plugin list threw (${String(error)})`)), 'off');
 assert.equal(await excalidrawState(probe({ ...manifest, ...enabled }, false)), 'loading');
 // The API is what counts: present means ready, whatever the files say.
 assert.equal(await excalidrawState(probe({}, true)), 'ready');
